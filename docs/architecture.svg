@@ -1,0 +1,148 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2180" height="3470" viewBox="0 0 2180 3470"><defs><marker id="end" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#1e293b" stroke-width="1.5"/></marker><marker id="start" markerWidth="10" markerHeight="10" refX="1" refY="5" orient="auto"><path d="M9 1 L1 5 L9 9" fill="none" stroke="#1e293b" stroke-width="1.5"/></marker></defs><rect width="2180" height="3470" fill="white"/><text x="40" y="59.0" fill="#1e293b" font-size="34" font-family="Arial,sans-serif">Glot conversation API — actors, boundaries and data flow</text>
+<text x="40" y="103.0" fill="#1e293b" font-size="23" font-family="Arial,sans-serif">One application socket carries both speakers. Two provider streams translate independently.</text>
+<rect x="590" y="150" width="1080" height="740" rx="12" fill="#f8fafc" stroke="#1e293b" stroke-width="2" stroke-dasharray="9 7"/>
+<text x="615" y="195.0" fill="#1e293b" font-size="25" font-family="Arial,sans-serif">OUR PLATFORM — one Python process</text>
+<text x="615" y="229.0" fill="#1e293b" font-size="19" font-family="Arial,sans-serif">Boxes inside are code modules, not separate network services.</text>
+<ellipse cx="95" cy="295" rx="25" ry="25" fill="#dbeafe" stroke="#1e293b" stroke-width="2"/>
+<line x1="95" y1="320" x2="95" y2="370" stroke="#1e293b" stroke-width="2"/>
+<line x1="55" y1="345" x2="135" y2="345" stroke="#1e293b" stroke-width="2"/>
+<line x1="95" y1="370" x2="65" y2="405" stroke="#1e293b" stroke-width="2"/>
+<line x1="95" y1="370" x2="125" y2="405" stroke="#1e293b" stroke-width="2"/>
+<text x="40" y="440.0" fill="#1e293b" font-size="20" font-family="Arial,sans-serif">Alice</text>
+<text x="40" y="466.0" fill="#1e293b" font-size="20" font-family="Arial,sans-serif">English</text>
+<ellipse cx="95" cy="585" rx="25" ry="25" fill="#dbeafe" stroke="#1e293b" stroke-width="2"/>
+<line x1="95" y1="610" x2="95" y2="660" stroke="#1e293b" stroke-width="2"/>
+<line x1="55" y1="635" x2="135" y2="635" stroke="#1e293b" stroke-width="2"/>
+<line x1="95" y1="660" x2="65" y2="695" stroke="#1e293b" stroke-width="2"/>
+<line x1="95" y1="660" x2="125" y2="695" stroke="#1e293b" stroke-width="2"/>
+<text x="40" y="730.0" fill="#1e293b" font-size="20" font-family="Arial,sans-serif">Jorge</text>
+<text x="40" y="756.0" fill="#1e293b" font-size="20" font-family="Arial,sans-serif">Spanish</text>
+<rect x="270" y="400" width="250" height="180" rx="12" fill="#dbeafe" stroke="#1e293b" stroke-width="2" />
+<text x="290" y="441.0" fill="#1e293b" font-size="21" font-family="Arial,sans-serif">Client / media bridge</text>
+<text x="290" y="482.0" fill="#1e293b" font-size="17" font-family="Arial,sans-serif">Labels microphone audio</text>
+<text x="290" y="504.1" fill="#1e293b" font-size="17" font-family="Arial,sans-serif">Plays results by recipient</text>
+<text x="290" y="526.2" fill="#1e293b" font-size="17" font-family="Arial,sans-serif">Outside this skeleton</text>
+<polyline points="160,350 250,435" fill="none" stroke="#1e293b" stroke-width="2" marker-end="url(#end)" marker-start="url(#start)" />
+<polyline points="160,630 250,540" fill="none" stroke="#1e293b" stroke-width="2" marker-end="url(#end)" marker-start="url(#start)" />
+<rect x="625" y="400" width="265" height="180" rx="12" fill="#dbeafe" stroke="#1e293b" stroke-width="2" />
+<text x="645" y="433.0" fill="#1e293b" font-size="23" font-family="Arial,sans-serif">api.py</text>
+<text x="645" y="463.0" fill="#1e293b" font-size="20" font-family="Arial,sans-serif">WebSocket API</text>
+<text x="645" y="498.0" fill="#1e293b" font-size="18" font-family="Arial,sans-serif">Accept WebSocket</text>
+<text x="645" y="521.4" fill="#1e293b" font-size="18" font-family="Arial,sans-serif">Parse and validate JSON</text>
+<text x="645" y="544.8" fill="#1e293b" font-size="18" font-family="Arial,sans-serif">Send JSON responses</text>
+<polyline points="530,490 615,490" fill="none" stroke="#1e293b" stroke-width="2" marker-end="url(#end)" marker-start="url(#start)" />
+<text x="410" y="328.0" fill="#1e293b" font-size="18" font-family="Arial,sans-serif">ONE WebSocket</text>
+<text x="410" y="351.4" fill="#1e293b" font-size="18" font-family="Arial,sans-serif">/v1/conversations</text>
+<rect x="950" y="400" width="270" height="180" rx="12" fill="#dbeafe" stroke="#1e293b" stroke-width="2" />
+<text x="970" y="433.0" fill="#1e293b" font-size="23" font-family="Arial,sans-serif">service.py</text>
+<text x="970" y="461.0" fill="#1e293b" font-size="18" font-family="Arial,sans-serif">Conversation coordination</text>
+<text x="970" y="498.0" fill="#1e293b" font-size="18" font-family="Arial,sans-serif">Route audio and results</text>
+<text x="970" y="521.4" fill="#1e293b" font-size="18" font-family="Arial,sans-serif">Own stream lifecycle</text>
+<text x="970" y="544.8" fill="#1e293b" font-size="18" font-family="Arial,sans-serif">Serialize output with lock</text>
+<polyline points="900,490 940,490" fill="none" stroke="#1e293b" stroke-width="2" marker-end="url(#end)" marker-start="url(#start)" />
+<text x="900" y="302.0" fill="#1e293b" font-size="17" font-family="Arial,sans-serif">receive() → (speaker, audio)</text>
+<text x="900" y="324.1" fill="#1e293b" font-size="17" font-family="Arial,sans-serif">emit(event) → client</text>
+<text x="900" y="346.2" fill="#1e293b" font-size="17" font-family="Arial,sans-serif">Python function calls</text>
+<rect x="1280" y="400" width="350" height="180" rx="12" fill="#fef3c7" stroke="#1e293b" stroke-width="2" />
+<text x="1300" y="433.0" fill="#1e293b" font-size="23" font-family="Arial,sans-serif">provider_contract.py</text>
+<text x="1300" y="463.0" fill="#1e293b" font-size="20" font-family="Arial,sans-serif">Translation provider interface</text>
+<text x="1300" y="498.0" fill="#1e293b" font-size="18" font-family="Arial,sans-serif">Provider.open(target language)</text>
+<text x="1300" y="521.4" fill="#1e293b" font-size="18" font-family="Arial,sans-serif">Stream.send() / finish() / events()</text>
+<text x="1300" y="544.8" fill="#1e293b" font-size="18" font-family="Arial,sans-serif">Delta(kind, data)</text>
+<polyline points="1230,490 1270,490" fill="none" stroke="#1e293b" stroke-width="2" marker-end="url(#end)" marker-start="url(#start)" />
+<text x="1280" y="323.0" fill="#1e293b" font-size="18" font-family="Arial,sans-serif">INTERFACE BOUNDARY</text>
+<text x="1280" y="346.4" fill="#1e293b" font-size="18" font-family="Arial,sans-serif">Application owns the contract</text>
+<rect x="1280" y="670" width="350" height="165" rx="12" fill="#dcfce7" stroke="#1e293b" stroke-width="2" />
+<text x="1300" y="711.0" fill="#1e293b" font-size="21" font-family="Arial,sans-serif">providers.py — OpenAI adapter</text>
+<text x="1300" y="753.0" fill="#1e293b" font-size="18" font-family="Arial,sans-serif">Implements Provider / Stream</text>
+<text x="1300" y="776.4" fill="#1e293b" font-size="18" font-family="Arial,sans-serif">Maps vendor events to Delta</text>
+<text x="1300" y="799.8" fill="#1e293b" font-size="18" font-family="Arial,sans-serif">Opens two upstream sockets</text>
+<polyline points="1455,590 1455,660" fill="none" stroke="#1e293b" stroke-width="2" marker-end="url(#end)" marker-start="url(#start)" />
+<rect x="950" y="670" width="270" height="165" rx="12" fill="#dcfce7" stroke="#1e293b" stroke-width="2" />
+<text x="970" y="712.0" fill="#1e293b" font-size="22" font-family="Arial,sans-serif">Fake provider</text>
+<text x="970" y="752.0" fill="#1e293b" font-size="17" font-family="Arial,sans-serif">Same contract</text>
+<text x="970" y="774.1" fill="#1e293b" font-size="17" font-family="Arial,sans-serif">In-memory demo output</text>
+<text x="970" y="796.2" fill="#1e293b" font-size="17" font-family="Arial,sans-serif">No network / no translation</text>
+<polyline points="1320,590 1320,625 1085,625 1085,660" fill="none" stroke="#1e293b" stroke-width="2" marker-end="url(#end)"  stroke-dasharray="7 5"/>
+<text x="970" y="868.0" fill="#1e293b" font-size="18" font-family="Arial,sans-serif">Choose ONE implementation: fake OR OpenAI.</text>
+<rect x="1770" y="650" width="360" height="210" rx="12" fill="#dcfce7" stroke="#1e293b" stroke-width="2" stroke-dasharray="9 7"/>
+<text x="1790" y="692.0" fill="#1e293b" font-size="22" font-family="Arial,sans-serif">EXTERNAL TRANSLATION</text>
+<text x="1790" y="733.0" fill="#1e293b" font-size="18" font-family="Arial,sans-serif">Stream 1: Alice → Jorge</text>
+<text x="1790" y="756.4" fill="#1e293b" font-size="18" font-family="Arial,sans-serif">English audio → Spanish output</text>
+<text x="1790" y="779.8" fill="#1e293b" font-size="18" font-family="Arial,sans-serif"></text>
+<text x="1790" y="803.2" fill="#1e293b" font-size="18" font-family="Arial,sans-serif">Stream 2: Jorge → Alice</text>
+<text x="1790" y="826.6" fill="#1e293b" font-size="18" font-family="Arial,sans-serif">Spanish audio → English output</text>
+<polyline points="1640,725 1760,725" fill="none" stroke="#1e293b" stroke-width="2" marker-end="url(#end)" marker-start="url(#start)" />
+<polyline points="1640,800 1760,800" fill="none" stroke="#1e293b" stroke-width="2" marker-end="url(#end)" marker-start="url(#start)" />
+<text x="1685" y="608.0" fill="#1e293b" font-size="18" font-family="Arial,sans-serif">TWO provider</text>
+<text x="1685" y="631.4" fill="#1e293b" font-size="18" font-family="Arial,sans-serif">WebSockets</text>
+<text x="40" y="972.0" fill="#1e293b" font-size="22" font-family="Arial,sans-serif">INPUT: start → labelled audio chunks → end</text>
+<text x="40" y="1012.0" fill="#1e293b" font-size="22" font-family="Arial,sans-serif">OUTPUT: ready → text / audio deltas with speaker + recipient → ended</text>
+<text x="40" y="1059.0" fill="#1e293b" font-size="19" font-family="Arial,sans-serif">On end: finish both providers → deliver remaining output → close streams. Source transcripts return to their speaker.</text>
+<text x="40" y="1222.0" fill="#1e293b" font-size="32" font-family="Arial,sans-serif">Conversation sequence — what the code does</text>
+<text x="40" y="1267.0" fill="#1e293b" font-size="22" font-family="Arial,sans-serif">Read from top to bottom. Input forwarding and both output tasks run concurrently.</text>
+<rect x="65" y="1310" width="330" height="65" rx="12" fill="#dbeafe" stroke="#1e293b" stroke-width="2" />
+<text x="85" y="1349.0" fill="#1e293b" font-size="21" font-family="Arial,sans-serif">Client / media bridge</text>
+<line x1="230" y1="1380" x2="230" y2="3330" stroke="#94a3b8" stroke-width="2" stroke-dasharray="7 6"/>
+<rect x="485" y="1310" width="330" height="65" rx="12" fill="#dbeafe" stroke="#1e293b" stroke-width="2" />
+<text x="505" y="1349.0" fill="#1e293b" font-size="21" font-family="Arial,sans-serif">api.py</text>
+<line x1="650" y1="1380" x2="650" y2="3330" stroke="#94a3b8" stroke-width="2" stroke-dasharray="7 6"/>
+<rect x="905" y="1310" width="330" height="65" rx="12" fill="#dbeafe" stroke="#1e293b" stroke-width="2" />
+<text x="925" y="1349.0" fill="#1e293b" font-size="21" font-family="Arial,sans-serif">service.py</text>
+<line x1="1070" y1="1380" x2="1070" y2="3330" stroke="#94a3b8" stroke-width="2" stroke-dasharray="7 6"/>
+<rect x="1325" y="1310" width="330" height="65" rx="12" fill="#dbeafe" stroke="#1e293b" stroke-width="2" />
+<text x="1345" y="1349.0" fill="#1e293b" font-size="21" font-family="Arial,sans-serif">Alice → Jorge provider</text>
+<line x1="1490" y1="1380" x2="1490" y2="3330" stroke="#94a3b8" stroke-width="2" stroke-dasharray="7 6"/>
+<rect x="1745" y="1310" width="330" height="65" rx="12" fill="#dbeafe" stroke="#1e293b" stroke-width="2" />
+<text x="1765" y="1349.0" fill="#1e293b" font-size="21" font-family="Arial,sans-serif">Jorge → Alice provider</text>
+<line x1="1910" y1="1380" x2="1910" y2="3330" stroke="#94a3b8" stroke-width="2" stroke-dasharray="7 6"/>
+<polyline points="230,1440 650,1440" fill="none" stroke="#1e293b" stroke-width="2" marker-end="url(#end)"  />
+<text x="245" y="1424.0" fill="#1e293b" font-size="18" font-family="Arial,sans-serif">Connect + start(participants)</text>
+<polyline points="650,1520 1070,1520" fill="none" stroke="#1e293b" stroke-width="2" marker-end="url(#end)"  />
+<text x="665" y="1504.0" fill="#1e293b" font-size="18" font-family="Arial,sans-serif">converse(receive, emit, provider)</text>
+<text x="1090" y="1568.0" fill="#1e293b" font-size="18" font-family="Arial,sans-serif">Validate two participants</text>
+<polyline points="1070,1630 1490,1630" fill="none" stroke="#1e293b" stroke-width="2" marker-end="url(#end)"  />
+<text x="1085" y="1614.0" fill="#1e293b" font-size="18" font-family="Arial,sans-serif">open(target = Spanish)</text>
+<polyline points="1070,1720 1910,1720" fill="none" stroke="#1e293b" stroke-width="2" marker-end="url(#end)"  />
+<text x="1085" y="1704.0" fill="#1e293b" font-size="18" font-family="Arial,sans-serif">open(target = English)</text>
+<text x="1090" y="1768.0" fill="#1e293b" font-size="18" font-family="Arial,sans-serif">Start two output tasks</text>
+<polyline points="1070,1830 650,1830" fill="none" stroke="#1e293b" stroke-width="2" marker-end="url(#end)"  />
+<text x="665" y="1814.0" fill="#1e293b" font-size="18" font-family="Arial,sans-serif">publish ready → emit()</text>
+<polyline points="650,1900 230,1900" fill="none" stroke="#1e293b" stroke-width="2" marker-end="url(#end)"  stroke-dasharray="7 5"/>
+<text x="245" y="1884.0" fill="#1e293b" font-size="18" font-family="Arial,sans-serif">ready</text>
+<rect x="80" y="1940" width="2020" height="590" rx="12" fill="#f8fafc" stroke="#1e293b" stroke-width="2" stroke-dasharray="9 7"/>
+<text x="100" y="1977.0" fill="#1e293b" font-size="22" font-family="Arial,sans-serif">WHILE THE CONVERSATION IS ACTIVE — repeats for incoming chunks and provider deltas</text>
+<polyline points="230,2035 650,2035" fill="none" stroke="#1e293b" stroke-width="2" marker-end="url(#end)"  />
+<text x="245" y="2019.0" fill="#1e293b" font-size="18" font-family="Arial,sans-serif">Alice audio chunk</text>
+<text x="670" y="2067.0" fill="#1e293b" font-size="17" font-family="Arial,sans-serif">Parse + validate message</text>
+<polyline points="650,2140 1070,2140" fill="none" stroke="#1e293b" stroke-width="2" marker-end="url(#end)"  stroke-dasharray="7 5"/>
+<text x="665" y="2124.0" fill="#1e293b" font-size="18" font-family="Arial,sans-serif">receive() returns (Alice, audio)</text>
+<polyline points="1070,2220 1490,2220" fill="none" stroke="#1e293b" stroke-width="2" marker-end="url(#end)"  />
+<text x="1085" y="2204.0" fill="#1e293b" font-size="18" font-family="Arial,sans-serif">send(audio)</text>
+<polyline points="1490,2300 1070,2300" fill="none" stroke="#1e293b" stroke-width="2" marker-end="url(#end)"  stroke-dasharray="7 5"/>
+<text x="1085" y="2284.0" fill="#1e293b" font-size="18" font-family="Arial,sans-serif">events(): Spanish text / audio delta</text>
+<polyline points="1070,2380 650,2380" fill="none" stroke="#1e293b" stroke-width="2" marker-end="url(#end)"  />
+<text x="665" y="2364.0" fill="#1e293b" font-size="18" font-family="Arial,sans-serif">publish → lock → emit(event)</text>
+<polyline points="650,2460 230,2460" fill="none" stroke="#1e293b" stroke-width="2" marker-end="url(#end)"  stroke-dasharray="7 5"/>
+<text x="245" y="2444.0" fill="#1e293b" font-size="18" font-family="Arial,sans-serif">result for Jorge</text>
+<text x="100" y="2570.0" fill="#1e293b" font-size="20" font-family="Arial,sans-serif">Jorge’s audio follows the same path through the second provider, producing English output for Alice.</text>
+<text x="100" y="2610.0" fill="#1e293b" font-size="20" font-family="Arial,sans-serif">Output tasks keep receiving results while forward_audio() waits for new audio. The lock serializes client sends.</text>
+<polyline points="230,2680 650,2680" fill="none" stroke="#1e293b" stroke-width="2" marker-end="url(#end)"  />
+<text x="245" y="2664.0" fill="#1e293b" font-size="18" font-family="Arial,sans-serif">end</text>
+<polyline points="650,2750 1070,2750" fill="none" stroke="#1e293b" stroke-width="2" marker-end="url(#end)"  stroke-dasharray="7 5"/>
+<text x="665" y="2734.0" fill="#1e293b" font-size="18" font-family="Arial,sans-serif">receive() returns None</text>
+<polyline points="1070,2820 1490,2820" fill="none" stroke="#1e293b" stroke-width="2" marker-end="url(#end)"  />
+<text x="1085" y="2804.0" fill="#1e293b" font-size="18" font-family="Arial,sans-serif">finish(): request final output</text>
+<polyline points="1070,2890 1910,2890" fill="none" stroke="#1e293b" stroke-width="2" marker-end="url(#end)"  />
+<text x="1085" y="2874.0" fill="#1e293b" font-size="18" font-family="Arial,sans-serif">finish(): request final output</text>
+<text x="1090" y="2938.0" fill="#1e293b" font-size="18" font-family="Arial,sans-serif">Wait for both output tasks (up to 15 seconds).</text>
+<text x="1090" y="2961.4" fill="#1e293b" font-size="18" font-family="Arial,sans-serif">Final deltas use the same publish path above.</text>
+<polyline points="1070,3050 650,3050" fill="none" stroke="#1e293b" stroke-width="2" marker-end="url(#end)"  />
+<text x="665" y="3034.0" fill="#1e293b" font-size="18" font-family="Arial,sans-serif">publish ended → emit()</text>
+<polyline points="650,3120 230,3120" fill="none" stroke="#1e293b" stroke-width="2" marker-end="url(#end)"  stroke-dasharray="7 5"/>
+<text x="245" y="3104.0" fill="#1e293b" font-size="18" font-family="Arial,sans-serif">ended</text>
+<polyline points="1070,3200 1910,3200" fill="none" stroke="#1e293b" stroke-width="2" marker-end="url(#end)"  />
+<text x="1085" y="3184.0" fill="#1e293b" font-size="18" font-family="Arial,sans-serif">Exit async with: close provider connections</text>
+<polyline points="650,3300 230,3300" fill="none" stroke="#1e293b" stroke-width="2" marker-end="url(#end)"  />
+<text x="245" y="3284.0" fill="#1e293b" font-size="18" font-family="Arial,sans-serif">Close client WebSocket</text>
+<text x="100" y="3409.0" fill="#1e293b" font-size="19" font-family="Arial,sans-serif">finish() requests completion; leaving async with closes connections. Fake providers use in-memory queues instead of sockets.</text></svg>

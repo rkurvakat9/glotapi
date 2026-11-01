@@ -4,7 +4,7 @@ import os
 from contextlib import asynccontextmanager
 
 from websockets.asyncio.client import connect
-from .ports import Delta
+from .provider_contract import Delta
 
 
 class OpenAIStream:

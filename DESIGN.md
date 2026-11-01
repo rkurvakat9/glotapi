@@ -12,16 +12,16 @@ Assumptions: participants usually speak their declared language; clients supply 
 
 ```mermaid
 flowchart LR
-    C[Integrating application: A and B audio] <-->|Glot v1 WebSocket| API[api.py: transport]
+    C[Integrating application: A and B audio] <-->|Glot v1 WebSocket| API[api.py: WebSocket API]
     API <--> S[service.py: conversation routing and lifecycle]
-    S --> P[ports.py: Provider / Stream / Delta]
+    S --> P[provider_contract.py: Provider / Stream / Delta]
     P --> O[providers.py: OpenAI adapter]
     P --> F[providers.py: fake adapter]
     O <-->|A source → B language| U1[Translation stream 1]
     O <-->|B source → A language| U2[Translation stream 2]
 ```
 
-These are modules in one process, not microservices. `api.py` owns JSON transport, provider selection and the connection deadline. `service.py` owns participant routing, input validation and session lifetime. `ports.py` defines the small application-owned streaming contract. `providers.py` translates that contract to vendor messages. Dependencies point from adapters toward application contracts; the service imports no vendor or web framework.
+These are modules in one process, not microservices. `api.py` owns JSON transport, incoming audio message parsing and validation, provider selection and the connection deadline. `service.py` owns participant validation, routing and session lifetime. It receives validated `(speaker, audio)` pairs, with `None` marking the end of input, so it does not depend on the client JSON message format. `provider_contract.py` defines the small application-owned streaming contract. `providers.py` translates that contract to vendor messages. Dependencies point from adapters toward application contracts; the service imports no vendor or web framework.
 
 The abstraction is a **directional translation stream**: `open(target)`, `send(audio)`, `finish()`, `events()`. It preserves simultaneous input and output rather than pretending a streaming model is a request/response function. Provider events become three application delta types; provider session IDs and event names never reach callers. PCM16 mono at 24 kHz is an explicit v1 platform media contract. Another vendor must satisfy it, possibly through conversion in its adapter. Provider independence does not imply every provider has equal language or media capabilities.
 
@@ -30,7 +30,7 @@ The abstraction is a **directional translation stream**: `open(target)`, `send(a
 Connect to `/v1/conversations`. First message:
 
 ```json
-{"type":"start","participants":{"alice":"en","bob":"es"}}
+{"type":"start","participants":{"alice":"en","jorge":"es"}}
 ```
 
 Wait for `{"type":"ready"}` after both upstream streams are configured. Then send:

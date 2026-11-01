@@ -13,16 +13,16 @@ from conversation.service import converse
 class ConversationTests(unittest.TestCase):
     def test_two_way_api_and_final_output(self):
         with TestClient(app).websocket_connect('/v1/conversations') as ws:
-            ws.send_json({'type': 'start', 'participants': {'alice': 'en', 'bob': 'es'}})
+            ws.send_json({'type': 'start', 'participants': {'alice': 'en', 'jorge': 'es'}})
             self.assertEqual(ws.receive_json(), {'type': 'ready'})
-            for speaker in ['alice', 'bob']:
+            for speaker in ['alice', 'jorge']:
                 ws.send_json({'type': 'audio', 'speaker': speaker, 'data': 'AAA='})
             ws.send_json({'type': 'end'})
             events = [ws.receive_json() for _ in range(3)]
             self.assertEqual(events[-1], {'type': 'ended'})
             self.assertEqual({(e['speaker'], e['recipient'], e['data']) for e in events[:-1]}, {
-                ('alice', 'bob', '[demo output in es]'),
-                ('bob', 'alice', '[demo output in en]')})
+                ('alice', 'jorge', '[demo output in es]'),
+                ('jorge', 'alice', '[demo output in en]')})
 
 
 class LifecycleTests(unittest.IsolatedAsyncioTestCase):

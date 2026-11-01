@@ -36,7 +36,7 @@ Budget roughly 12 focused hours; use the remaining time for interview rehearsal 
 | Read mission and API; choose one use case and assumptions | 1.5 h | Scope and product rationale |
 | Define public events, direction and lifecycle | 2 h | API examples and architecture diagram |
 | Explain trade-offs, omissions and three expansion paths | 2.5 h | Short design document |
-| Write `ports.py` and `service.py` | 2 h | Translation stream port; two-way routing and cleanup |
+| Write `provider_contract.py` and `service.py` | 2 h | Translation provider interface; two-way routing and cleanup |
 | Write `providers.py` and `api.py` | 2 h | Fake + OpenAI adapters; thin WebSocket endpoint |
 | Write demo, targeted tests and run instructions | 2 h | Reproducible walkthrough |
 
@@ -47,7 +47,7 @@ Stop when the boundaries and complete slice are demonstrated. Avoid adding repos
 1. Start with the product decision: a conversation has people and directions; the provider translates one stream toward one language.
 2. Show the diagram and explain why v1 has two streams and one application socket.
 3. Run the fake demo; point out both recipients and final drain. Be explicit that fake text is not translation.
-4. Walk through `ports.py`, then the routing function. Show where vendor-specific event names are isolated in the real adapter.
+4. Walk through `provider_contract.py`, then the routing function. Show where vendor-specific event names are isolated in the real adapter.
 5. Describe a provider swap: implement the same port and change composition in `api.py`. Media conversion stays in the adapter; unsupported capabilities must be rejected.
 6. Choose one expansion and name the modules that change. Close with omissions and what must happen before a pilot.
 
