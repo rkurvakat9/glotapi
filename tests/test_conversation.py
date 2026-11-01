@@ -52,6 +52,7 @@ class LifecycleTests(unittest.IsolatedAsyncioTestCase):
         # No credentials or remote API needed: exercise the real adapter mapping.
         incoming = iter([
             {'type': 'session.created'}, {'type': 'session.updated'},
+            {'type': 'session.input_transcript.delta', 'delta': 'Hello'},
             {'type': 'session.output_transcript.delta', 'delta': 'Hola'},
             {'type': 'session.output_audio.delta', 'delta': 'AAA='},
             {'type': 'session.closed'},
@@ -80,9 +81,12 @@ class LifecycleTests(unittest.IsolatedAsyncioTestCase):
                 await stream.send('AAA=')
                 await stream.finish()
                 events = [event async for event in stream.events()]
-        self.assertEqual([e.kind for e in events], ['translation.delta', 'audio.delta'])
+        self.assertEqual([e.kind for e in events], ['source.delta', 'translation.delta', 'audio.delta'])
         self.assertEqual(sent, [
-            {'type': 'session.update', 'session': {'audio': {'output': {'language': 'es'}}}},
+            {'type': 'session.update', 'session': {'audio': {
+                'input': {'transcription': {'model': 'gpt-realtime-whisper'}},
+                'output': {'language': 'es'},
+            }}},
             {'type': 'session.input_audio_buffer.append', 'audio': 'AAA='},
             {'type': 'session.close'},
         ])

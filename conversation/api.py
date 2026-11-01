@@ -20,6 +20,10 @@ async def receive_audio(ws, participants):
         raise ValueError("expected audio with a known speaker, or end")
 
     audio = event.get("data")
+    # Added at your request as an illustrative validation guard, not translation logic.
+    # The 64000-character cap is an arbitrary demo limit, not a provider requirement.
+    # These checks assume our base64 PCM16 input contract; other formats would need
+    # different validation or conversion in the provider adapter.
     if not isinstance(audio, str) or len(audio) > 64000:
         raise ValueError("audio must be base64, at most 64000 characters")
     pcm = base64.b64decode(audio, validate=True)

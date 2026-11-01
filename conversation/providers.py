@@ -41,8 +41,18 @@ class OpenAIProvider:
             async with asyncio.timeout(10):
                 if json.loads(await ws.recv())["type"] != "session.created":
                     raise RuntimeError("expected session creation")
-                await ws.send(json.dumps({"type": "session.update", "session": {
-                    "audio": {"output": {"language": target}}}}))
+                '''https://developers.openai.com/api/reference/resources/realtime/translation-client-events#session.update'''
+                await ws.send(json.dumps({"type": "session.update",
+                  "session": {
+                    "audio": {
+                      "input": {
+                        "transcription": {
+                          "model": "gpt-realtime-whisper"
+                        }
+                      },
+                      "output": {"language": target}
+                    }
+                  }}))
                 if json.loads(await ws.recv())["type"] != "session.updated":
                     raise RuntimeError("expected configuration acknowledgement")
             yield OpenAIStream(ws)
